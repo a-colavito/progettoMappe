@@ -1,0 +1,35 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [12.49034, 41.897928],
+            [12.490741, 41.898019],
+            [12.491215, 41.897768],
+            [12.490835, 41.897514],
+            [12.490121, 41.897407],
+            [12.489632, 41.897621],
+            [12.49034, 41.897928]
+          ]
+        ]
+      },
+      "properties": {
+        "building": "university",
+        "layer": "1",
+        "name": "Dipartimento di Ingegneria Civile, Ambientale, del Territorio, Edile e di Chimica",
+        "short_name": "DICATECh",
+        "id": 418007234,
+        "visible": true,
+        "version": 10,
+        "changeset": 158203348,
+        "timestamp": "2024-10-22T09:42:35Z",
+        "user": "Alexis04132",
+        "uid": 20509407
+      }
+    }
+  ]
+}

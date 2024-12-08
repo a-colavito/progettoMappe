@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mappa dei Plessi</title>
+
+    <!-- CSS Personalizzato -->
+    <link rel="stylesheet" href="test.css" type="text/css">
+
+    <!-- Importazione CSS Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+</head>
+<body>
+<!-- Selettore per i Plessi -->
+<br>
+<select id="plessi-menu">
+    <option value="allEdifici">Seleziona un Edificio</option>
+    <option value="archi">Dipartimento di Architettura</option>
+    <option value="biblioCentrale">Corpo Biblioteca Centrale</option>
+    <option value="dicatech">Dipartimento di Ingegneria Civile</option>
+    <option value="dei">Dipartimento di Ingegneria Elettrica</option>
+    <option value="dmmm">Dipartimento di Meccanica</option>
+</select>
+<br><br>
+
+<!-- Selettore risorse nei Plessi -->
+<div id="sottomenu-container" style="display: none; margin-top: 10px;">
+    <label for="strutture-menu">Luoghi di interesse:</label>
+    <select id="strutture-menu">
+        <option value="">Seleziona una struttura</option>
+    </select>
+</div>
+
+<!-- Mappa principale -->
+<div id="map" style="height: 400px;"></div>
+
+<!-- Importazione Javascript -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+<script src="poliJson.js"></script>
+<script src="Edifici.js"></script>
+
+<script>
+    // Inizializzazione della mappa
+    const map = L.map('map').setView([41.108859, 16.878372], 18);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    // Verifica della variabile 'edifici'
+    if (typeof edifici === 'undefined' || !edifici.features) {
+        console.error("La variabile 'edifici' non è definita correttamente.");
+    }
+    function onEachEdificio(feature, layer) {
+        const name = feature.properties.name || "Edificio Sconosciuto";
+        const description = feature.properties.description || "Descrizione non disponibile.";
+        layer.bindPopup(`<b>${name}</b><br>${description}`);
+    }
+    // Creazione oggetto Poliba
+    const Poliba = {
+
+        allEdifici : {
+            type: "FeatureCollection",
+            features: edifici.features.filter(f => f.properties.building=== "uniersityP")},
+
+        archi: {
+            type: "FeatureCollection",
+            features: edifici.features.filter(f => f.properties.name === "Dipartimento di Architettura, Costruzione e Design")
+        },
+        dmmm: {
+            type: "FeatureCollection",
+            features: edifici.features.filter(f => f.properties.name === "Dipartimento di Meccanica, Matematica e Management")
+        },
+        dei: {
+            type: "FeatureCollection",
+            features: edifici.features.filter(f => f.properties.name === "Dipartimento di Ingegneria Elettrica e dell'Informazione")
+        },
+        dicatech: {
+            type: "FeatureCollection",
+            features: edifici.features.filter(f => f.properties.name === "Dipartimento di Ingegneria Civile, Ambientale, del Territorio, Edile e di Chimica")
+        },
+        biblioCentrale: {
+            type: "FeatureCollection",
+            features: edifici.features.filter(f => f.properties.name === "Corpo \"Biblioteca Centrale\"")
+        }
+
+    };
+
+
+
+
+
+    // Associazione dipartimenti e strutture
+    const strutture = {
+        archi: ['Vitruvius'],
+        dmmm: ['Polilibrary'],
+        dei: [],
+        dicatech: [],
+        biblioCentrale: ['Brucoli']
+    };
+
+
+    // Stili personalizzati
+
+    const styles = {
+        allEdifici: { color: '#FF0000', fillOpacity: 1 },
+        archi: { color: '#6293CE', fillOpacity: 0.5 },
+        dmmm: { color: '#990B2F', fillOpacity: 0.5 },
+        dei: { color: '#1B3C69', fillOpacity: 0.5 },
+        dicatech: { color: '#6C822D', fillOpacity: 0.5 },
+        biblioCentrale: { color: '#008295', fillOpacity: 0.5 }
+    };
+
+    // Layers e bounds
+    const plessiLayers = {
+        allEdifici: L.geoJSON(Poliba.allEdifici, { style: styles.allEdifici }),
+        archi: L.geoJSON(Poliba.archi, { style: styles.archi, onEachFeature: onEachEdificio }),
+        dmmm: L.geoJSON(Poliba.dmmm, { style: styles.dmmm, onEachFeature: onEachEdificio }),
+        dei: L.geoJSON(Poliba.dei, { style: styles.dei, onEachFeature: onEachEdificio }),
+        dicatech: L.geoJSON(Poliba.dicatech, { style: styles.dicatech, onEachFeature: onEachEdificio }),
+        biblioCentrale: L.geoJSON(Poliba.biblioCentrale, { style: styles.biblioCentrale, onEachFeature: onEachEdificio }),
+    };
+    const plessiBounds = {
+
+    };
+
+    Object.keys(Poliba).forEach(plesso => {
+        plessiLayers[plesso] = L.geoJSON(Poliba[plesso], { style: styles[plesso] });
+        plessiBounds[plesso] = L.geoJSON(Poliba[plesso]).getBounds();
+    });
+
+    // Event listener per il menu
+    const plessiMenu = document.getElementById('plessi-menu');
+    const struttureMenu = document.getElementById('strutture-menu');
+    const sottomenuContainer = document.getElementById('sottomenu-container');
+
+    plessiMenu.addEventListener('change', function () {
+        const selectedPlesso = this.value;
+
+        // Rimuovi tutti i layer dalla mappa
+        Object.values(plessiLayers).forEach(layer => map.removeLayer(layer));
+
+        // Reset del sottomenu
+        struttureMenu.innerHTML = '<option value="">Seleziona una struttura</option>';
+        sottomenuContainer.style.display = 'none';
+
+        if (selectedPlesso) {
+            // Aggiungi il layer corrispondente al plesso selezionato
+            map.addLayer(plessiLayers[selectedPlesso]);
+
+            // Aggiungi le opzioni al sottomenu
+            strutture[selectedPlesso].forEach(struttura => {
+                const option = document.createElement('option');
+                option.value = struttura.toLowerCase().replace(/\s+/g, '-');
+                option.textContent = struttura;
+                struttureMenu.appendChild(option);
+            });
+
+            // Mostra il sottomenu se ci sono opzioni disponibili
+            if (strutture[selectedPlesso].length > 0) {
+                sottomenuContainer.style.display = 'block';
+            }
+
+            // Zoom sulla mappa per il plesso selezionato
+            map.fitBounds(plessiBounds[selectedPlesso]);
+        } else {
+            // Se nessun edificio è selezionato, mostra il layer generale e centra la mappa su tutti gli edifici
+            map.addLayer(plessiLayers.allEdificiLayer);
+
+            // Centra la mappa su tutti gli edifici
+            map.fitBounds(L.geoJSON(allEdifici).getBounds());
+        }
+    });
+
+    struttureMenu.addEventListener('change', function () {
+        const selectedStruttura = this.value;
+
+        // Strutture con dettagli di popup
+        const biblioteche = {
+            polilibrary: {
+                coords: [41.108866, 16.878390],
+                popupContent: "<b>Polilibrary</b><br> Corpo a Z 3° piano<br>polilibrary@poliba.it"
+            },
+            vitruvius: {
+                coords: [41.109543, 16.878701],
+                popupContent: "<b>Vitruvius</b><br> \"Palazzo Architettura\", piano terra<br>biblio.architettura@poliba.it"
+            },
+            brucoli: {
+                coords: [41.108902, 16.879053],
+                popupContent: "<b>Brucoli</b><br> Biblioteca Brucoli, 2° piano<br>biblio.ing@poliba.it"
+            }
+        };
+
+        if (selectedStruttura && biblioteche[selectedStruttura]) {
+            const { coords, popupContent } = biblioteche[selectedStruttura];
+            const marker = L.marker(coords).addTo(map);
+            marker.bindPopup(popupContent).openPopup();
+            map.setView(coords, 18);
+        } else {
+            alert("Struttura non trovata o non gestita!");
+
+        }
+    });
+</script>
+</body>
+</html>

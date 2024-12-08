@@ -1,0 +1,2303 @@
+<!DOCTYPE html>
+<html lang="it" dir="ltr"
+      xmlns:content="http://purl.org/rss/1.0/modules/content/"
+      xmlns:dc="http://purl.org/dc/terms/"
+      xmlns:foaf="http://xmlns.com/foaf/0.1/"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+      xmlns:sioc="http://rdfs.org/sioc/ns#"
+      xmlns:sioct="http://rdfs.org/sioc/types#"
+      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+      xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+<!-- importazione CSS Leaflet  -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""/>
+<!-- importazione Javascript Leaflet  -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+
+<head>
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortlink" href="/it/node/14345" />
+    <meta name="Generator" content="Drupal 7 (http://drupal.org)" />
+    <link rel="canonical" href="/it/sba/biblioteca-polilibrary" />
+    <style type="text/css" media="all">
+        @import url("https://www.poliba.it/modules/system/system.base.css?sdiouv");
+    </style>
+    <style type="text/css" media="all">
+        @import url("https://www.poliba.it/modules/aggregator/aggregator.css?sdiouv");
+        @import url("https://www.poliba.it/modules/book/book.css?sdiouv");
+        @import url("https://www.poliba.it/modules/comment/comment.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/modules/date/date_api/date.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/modules/date/date_popup/themes/datepicker.1.7.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/modules/date/date_repeat_field/date_repeat_field.css?sdiouv");
+        @import url("https://www.poliba.it/modules/field/theme/field.css?sdiouv");
+        @import url("https://www.poliba.it/modules/node/node.css?sdiouv");
+        @import url("https://www.poliba.it/modules/poll/poll.css?sdiouv");
+        @import url("https://www.poliba.it/modules/forum/forum.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/modules/views/css/views.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/modules/ckeditor/css/ckeditor.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/modules/media/modules/media_wysiwyg/css/media_wysiwyg.base.css?sdiouv");
+    </style>
+    <style type="text/css" media="all">
+        @import url("https://www.poliba.it/sites/all/modules/ctools/css/ctools.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/modules/eu_cookie_compliance/css/eu_cookie_compliance.css?sdiouv");
+    </style>
+    <style type="text/css" media="all">
+        <!--/*--><![CDATA[/*><!--*/
+        #sliding-popup.sliding-popup-bottom,#sliding-popup.sliding-popup-bottom .eu-cookie-withdraw-banner,.eu-cookie-withdraw-tab{background:#0779bf;}#sliding-popup.sliding-popup-bottom.eu-cookie-withdraw-wrapper{background:transparent}#sliding-popup .popup-content #popup-text h1,#sliding-popup .popup-content #popup-text h2,#sliding-popup .popup-content #popup-text h3,#sliding-popup .popup-content #popup-text p,.eu-cookie-compliance-more-button,.eu-cookie-compliance-secondary-button,.eu-cookie-withdraw-tab{color:#fff !important;}.eu-cookie-withdraw-tab{border-color:#fff;}
+
+        /*]]>*/-->
+    </style>
+    <style type="text/css" media="all">
+        @import url("https://www.poliba.it/sites/all/themes/jango/assets/plugins/socicon/socicon.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/themes/jango/assets/plugins/bootstrap-social/bootstrap-social.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/themes/jango/assets/plugins/font-awesome/css/font-awesome.min.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/themes/jango/assets/plugins/simple-line-icons/simple-line-icons.min.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/themes/jango/assets/plugins/animate/animate.min.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/themes/jango/assets/plugins/cubeportfolio/css/cubeportfolio.min.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/themes/jango/assets/plugins/owl-carousel/assets/owl.carousel.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/themes/jango/assets/plugins/fancybox/jquery.fancybox.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/themes/jango/assets/plugins/slider-for-bootstrap/css/slider.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/themes/jango/assets/plugins/ilightbox/css/ilightbox.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/themes/jango/css/YTPlayer.css?sdiouv");
+    </style>
+    <style type="text/css" media="all">
+        @import url("https://www.poliba.it/sites/all/themes/jango/css/fonts.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/themes/jango/assets/plugins/bootstrap/css/bootstrap.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/themes/jango/assets/base/css/plugins.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/themes/jango/assets/base/css/components.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/themes/jango/css/drupal.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/themes/jango/assets/base/css/themes/default.css?sdiouv");
+        @import url("https://www.poliba.it/sites/all/themes/jango/jango_sub/css/custom.css?sdiouv");
+    </style>
+    <title>Biblioteca PoliLibrary | Politecnico di Bari</title>
+</head>
+<body class="html not-front not-logged-in no-sidebars page-node page-node- page-node-14345 node-type-sba c-layout-header-mobile-fixed c-layout-header-topbar c-layout-header-topbar-collapse c-header-not-fixed " >
+<div id="skip-link">
+    <a href="#main-content" class="element-invisible element-focusable">Salta al contenuto principale</a>
+</div>
+
+
+
+<div  style="padding-bottom: 20px; " class="nd-region">
+
+
+
+    <div class = "container-fluid">
+
+        <div  id="header-fullwidth" class="row">
+
+
+            <div  id="top" class="col-md-12 ">
+
+                <div class="region region-top">
+                    <div id="block-block-36" class="block block-block ">
+
+
+                        <div class="content">
+                            <div  style = 'padding-bottom: 0px; padding-top: 0px; padding-right: 0px; padding-left: 0px; '><header class="c-layout-header c-layout-header-4 c-layout-header-default-mobile " data-minimize-offset="80">
+
+                                <div class="c-topbar c-topbar-dark">
+                                    <div class="container">
+                                        <!-- BEGIN: INLINE NAV -->
+
+                                        <nav class="c-top-menu c-pull-left">
+                                            <ul class="c-icons c-theme-ul">
+                                                <li><a href = "https://www.facebook.com/PolibaOfficial/" target = "_blank"><i class = "icon-social-facebook"></i></a></li><li><a href = "https://twitter.com/polibaofficial" target = "_blank"><i class = "icon-social-twitter"></i></a></li><li><a href = "https://www.instagram.com/politecnicodibari/" target = "_blank"><i class = "icon-social-instagram"></i></a></li>            </ul>
+                                        </nav>
+                                        <!-- END: INLINE NAV -->
+                                        <!-- BEGIN: INLINE NAV -->
+                                        <nav class="c-top-menu c-pull-right">
+                                            <ul class="c-links c-theme-ul">
+                                                <li  class="first leaf"><a href="http://www.en.poliba.it/" title="">en</a></li>
+                                                <li class="c-divider">|</li><li  class="leaf"><a href="http://www.poliba.it/it/saml_login" title="">Login</a></li>
+                                                <li class="c-divider">|</li><li  class="last leaf"><a href="/it/ateneo/rubrica" title="">Rubrica</a></li>
+                                            </ul>
+                                        </nav>
+                                        <!-- END: INLINE NAV -->
+                                    </div>
+                                </div>
+
+                                <div class="c-navbar">
+                                    <div class="container">
+                                        <!-- BEGIN: BRAND -->
+                                        <div class="c-navbar-wrapper clearfix">
+                                            <div class="c-brand c-pull-left">
+                                                <a href="/it" class="c-logo">
+                                                    <img src="https://www.poliba.it/sites/default/files/logo_5.png" alt="Politecnico di Bari" class="c-desktop-logo">
+                                                    <img src="https://www.poliba.it/sites/default/files/logo_5.png" alt="Politecnico di Bari" class="c-desktop-logo-inverse">
+                                                    <img src="https://www.poliba.it/sites/default/files/logo_5.png" alt="Politecnico di Bari" class="c-mobile-logo"> </a>
+                                                <button class="c-hor-nav-toggler" type="button" data-target=".c-mega-menu">
+                                                    <span class="c-line"></span>
+                                                    <span class="c-line"></span>
+                                                    <span class="c-line"></span>
+                                                </button>
+                                                <button class="c-topbar-toggler" type="button">
+                                                    <i class="fa fa-ellipsis-v"></i>
+                                                </button>
+                                                <button class="c-search-toggler" type="button">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </div>
+                                            <form class="form" action="/it/sba/biblioteca-polilibrary" method="post" id="search-block-form" accept-charset="UTF-8"><div><div class="container-inline">
+                                                <h2 class="element-invisible">Form di ricerca</h2>
+                                                <div class = "input-group"><div class = "c-quick-search">
+                                                    <input title="Inserisci i termini da cercare." class="input-default form-control" placeholder="Cerca in Poliba..." id="edit-search-block-form--2" name="search_block_form" value="" size="15" maxlength="128" />
+                                                    <span class="c-theme-link">×</span>
+                                                </div><div class="form-actions hidden form-wrapper" id="edit-actions"><input class="btn-medium btn btn-mod form-submit btn c-btn c-btn-square c-theme-btn c-font-bold c-font-uppercase c-font-white" type="submit" id="edit-submit" name="op" value="Go!" /></div></div><input type="hidden" name="form_build_id" value="form-_0EumXZThR-HxkQowCLQOfEhvNXYgrVtxXr57-Y6Srk" />
+                                                <input type="hidden" name="form_id" value="search_block_form" />
+                                            </div>
+                                            </div></form>
+                                            <nav class="c-mega-menu c-pull-right c-mega-menu-light c-mega-menu-dark-mobile c-mega-menu-onepage c-fonts-uppercase c-fonts-bold" data-onepage-animation-speed = "700">
+                                                <!-- Main Menu -->
+                                                <ul class="nav navbar-nav c-theme-nav">
+
+                                                    <li  data-id="3315" data-level="1" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="justify" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-1 mega mega-align-justify dropdown">
+
+                                                        <a href="/it/ateneo/ateneo"  class="dropdown-toggle c-link c-toggler" title="ATENEO">
+
+                                                            ATENEO          <span class="c-arrow c-toggler"></span>
+                                                        </a>
+
+                                                        <ul  data-class="" data-width="" class="x11 dropdown-menu c-menu-type-mega2 c-menu-type-fullwidth row">
+
+                                                            <li  data-class="" data-width="2" data-hidewcol="0" id="tb-megamenu-column-1" class="tb-megamenu-column col-md-2  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-4">
+                                                                    <li class = "mega-caption"><h3>CHI SIAMO</h3></li>
+
+                                                                    <li  data-id="3336" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="CHI SIAMO" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/il-sigillo-del-politecnico"  title="SIGILLO DEL POLITECNICO">
+
+                                                                            SIGILLO DEL POLITECNICO      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3405" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/storia"  title="STORIA">
+
+                                                                            STORIA      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3406" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/rettore"  title="RETTORE">
+
+                                                                            RETTORE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3734" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/direttore-generale"  title="DIRETTORE GENERALE">
+
+                                                                            DIRETTORE GENERALE      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li  data-class="" data-width="2" data-hidewcol="" id="tb-megamenu-column-2" class="tb-megamenu-column col-md-2  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-2">
+
+                                                                    <li  data-id="3692" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="http://www.poliba.it/it/ateneo/piano-strategico"  title="PIANO STRATEGICO">
+
+                                                                            PIANO STRATEGICO      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3839" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="http://www.poliba.it/it/amministrazione-trasparente/politiche-di-genere"  title="Politiche di genere">
+
+                                                                            Politiche di genere      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li  data-class="" data-width="2" data-hidewcol="" id="tb-megamenu-column-3" class="tb-megamenu-column col-md-2  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-6">
+                                                                    <li class = "mega-caption"><h3>ATENEO IN CIFRE</h3></li>
+
+                                                                    <li  data-id="3411" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="ATENEO IN CIFRE" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/ateneo-cifre"  title="ATENEO IN CIFRE">
+
+                                                                            ATENEO IN CIFRE      </a>
+
+                                                                    </li>
+
+                                                                    <li class = "mega-caption"><h3>SEDI E MAPPE</h3></li>
+
+                                                                    <li  data-id="3412" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="SEDI E MAPPE" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/dove-siamo"  title="BARI - CAMPUS">
+
+                                                                            BARI - CAMPUS      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3413" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/bari-%E2%80%93-servizi-amministrativi"  title="BARI - SERVIZI AMMINISTRATIVI">
+
+                                                                            BARI - SERVIZI AMMINISTRATIVI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3414" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/bari-%E2%80%93-sede-japigia-dmmm"  title="BARI - SEDE JAPIGIA">
+
+                                                                            BARI - SEDE JAPIGIA      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3415" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/bari-%E2%80%93-isolato-47"  title="BARI - ISOLATO 47">
+
+                                                                            BARI - ISOLATO 47      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3418" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/ttec-taranto-politecnico"  title="TTEC - Taranto Politecnico">
+
+                                                                            TTEC - Taranto Politecnico      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li  data-class="" data-width="2" data-hidewcol="" id="tb-megamenu-column-4" class="tb-megamenu-column col-md-2  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-10">
+
+                                                                    <li  data-id="3419" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/foggia-%E2%80%93-polo-didattico"  title="FOGGIA - POLO DIDATTICO">
+
+                                                                            FOGGIA - POLO DIDATTICO      </a>
+
+                                                                    </li>
+
+                                                                    <li class = "mega-caption"><h3>ORGANI DI ATENEO</h3></li>
+
+                                                                    <li  data-id="3407" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="ORGANI DI ATENEO" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/senato-accademico"  title="SENATO ACCADEMICO">
+
+                                                                            SENATO ACCADEMICO      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3694" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/rettore"  title="Rettore">
+
+                                                                            Rettore      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3409" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/nucleo-di-valutazione"  title="NUCLEO DI VALUTAZIONE">
+
+                                                                            NUCLEO DI VALUTAZIONE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3408" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/consiglio-di-amministrazione"  title="CONSIGLIO DI AMMINISTRAZIONE">
+
+                                                                            CONSIGLIO DI AMMINISTRAZIONE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3410" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/collegio-dei-revisori-dei-conti"  title="COLLEGIO DEI REV. DEI CONTI">
+
+                                                                            COLLEGIO DEI REV. DEI CONTI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3426" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/commissione-etica"  title="COMMISSIONE ETICA">
+
+                                                                            COMMISSIONE ETICA      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3420" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/comitato-unico-di-garanzia-cug"  title="COMITATO UNICO DI GARANZIA">
+
+                                                                            COMITATO UNICO DI GARANZIA      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3421" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/collegio-di-disciplina"  title="COLLEGIO DI DISCIPLINA">
+
+                                                                            COLLEGIO DI DISCIPLINA      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3422" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/garante-degli-studenti"  title="GARANTE DEGLI STUDENTI">
+
+                                                                            GARANTE DEGLI STUDENTI      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li  data-class="" data-width="2" data-hidewcol="" id="tb-megamenu-column-5" class="tb-megamenu-column col-md-2  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-4">
+
+                                                                    <li  data-id="3423" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/QS/presidio-della-qualit%C3%A0-di-ateneo"  title="PRESIDIO DELLA QUALITÀ DI ATENEO">
+
+                                                                            PRESIDIO DELLA QUALITÀ DI ATENEO      </a>
+
+                                                                    </li>
+
+                                                                    <li class = "mega-caption"><h3>STATUTO E REGOLAMENTI</h3></li>
+
+                                                                    <li  data-id="3424" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="STATUTO E REGOLAMENTI" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/statuto"  title="STATUTO">
+
+                                                                            STATUTO      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3425" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/regolamenti"  title="REGOLAMENTI">
+
+                                                                            REGOLAMENTI      </a>
+
+                                                                    </li>
+
+                                                                    <li class = "mega-caption"><h3>ELEZIONI</h3></li>
+
+                                                                    <li  data-id="3427" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="ELEZIONI" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/elezioni"  title="ELEZIONI">
+
+                                                                            ELEZIONI      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li  data-class="" data-width="2" data-hidewcol="" id="tb-megamenu-column-6" class="tb-megamenu-column col-md-2  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-3">
+                                                                    <li class = "mega-caption"><h3>UFFICIO STAMPA</h3></li>
+
+                                                                    <li  data-id="3674" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="UFFICIO STAMPA" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ateneo/press-room"  title="UFFICIO STAMPA">
+
+                                                                            UFFICIO STAMPA      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3684" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="http://www.poliba.it/it/ateneo/piano-della-comunicazione"  title="PIANO DELLA COMUNICAZIONE">
+
+                                                                            PIANO DELLA COMUNICAZIONE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3768" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="https://polibachronicle.poliba.it"  title="POLIBACHRONICLE">
+
+                                                                            POLIBACHRONICLE      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+
+
+                                                    <li  data-id="3334" data-level="1" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="justify" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-1 mega mega-align-justify dropdown">
+
+                                                        <a href="/it/didattica/didattica"  class="dropdown-toggle c-link c-toggler" title="DIDATTICA">
+
+                                                            DIDATTICA          <span class="c-arrow c-toggler"></span>
+                                                        </a>
+
+                                                        <ul  data-class="" data-width="" class="x11 dropdown-menu c-menu-type-mega2 c-menu-type-fullwidth row">
+
+                                                            <li  data-class="" data-width="2" data-hidewcol="0" id="tb-megamenu-column-7" class="tb-megamenu-column col-md-2  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-16">
+                                                                    <li class = "mega-caption"><h3>OFFERTA FORMATIVA</h3></li>
+
+                                                                    <li  data-id="3393" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="OFFERTA FORMATIVA" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="https://poliba.coursecatalogue.cineca.it/"  title="OFFERTA FORMATIVA">
+
+                                                                            OFFERTA FORMATIVA      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3682" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="http://cruscotto.poliba.it:8080"  title="CRUSCOTTO DELLA DIDATTICA">
+
+                                                                            CRUSCOTTO DELLA DIDATTICA      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3724" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="https://www.poliba.it/it/didattica/calendario-didattico-202425"  title="CALENDARIO ANNO ACCADEMICO">
+
+                                                                            CALENDARIO ANNO ACCADEMICO      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3720" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/orari-delle-lezioni"  title="Orario delel Lezioni">
+
+                                                                            ORARI DELLE LEZIONI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3778" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="http://www.poliba.it/it/telefonia/iscrizione-ai-corsi-presenti-su-microsoft-teams-del-poliba"  title="ISCRIZIONE AI CORSI PRESENTI SU MS TEAMS">
+
+                                                                            ISCRIZIONE AI CORSI PRESENTI SU MS TEAMS      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3756" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/sedute-di-laurea"  title="SEDUTE DI LAUREA">
+
+                                                                            SEDUTE DI LAUREA      </a>
+
+                                                                    </li>
+
+                                                                    <li class = "mega-caption"><h3>ORIENTAMENTO</h3></li>
+
+                                                                    <li  data-id="3451" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="ORIENTAMENTO" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/orientamento"  title="HOME">
+
+                                                                            HOME      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3452" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/orientamento/presentazione-politecnico"  title="COME SCEGLIERE">
+
+                                                                            COME SCEGLIERE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3454" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/orientamento/immatricolazioni"  title="COME ISCRIVERSI">
+
+                                                                            COME ISCRIVERSI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3455" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/orientamento/poligym-e-cus"  title="PERCHÉ POLIBA">
+
+                                                                            PERCHÉ POLIBA      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3456" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/orientamento/info"  title="CONTATTI">
+
+                                                                            CONTATTI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3732" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="http://digilab.poliba.it"  title="Digilab">
+
+                                                                            Digilab      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3458" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/openmultilab"  title="OPENMULTILAB">
+
+                                                                            OPENMULTILAB      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3460" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/cds-innovativi"  title="CDS INNOVATIVI">
+
+                                                                            CDS INNOVATIVI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3461" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/attivit%C3%A0-autogestite-dagli-studenti"  title="ATTIVITÀ AUTOGESTITE">
+
+                                                                            ATTIVITÀ AUTOGESTITE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3864" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/viaggi-gli-studenti"  title="Viaggi per gli studenti">
+
+                                                                            Viaggi per gli studenti      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li  data-class="" data-width="2" data-hidewcol="" id="tb-megamenu-column-8" class="tb-megamenu-column col-md-2  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-7">
+                                                                    <li class = "mega-caption"><h3>BORSE DI STUDIO E OPPORTUNITÀ</h3></li>
+
+                                                                    <li  data-id="3494" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="BORSE DI STUDIO E OPPORTUNITÀ" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/borse-di-studio"  title="BORSE DI STUDIO ">
+
+                                                                            BORSE DI STUDIO       </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3859" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/opportunit%C3%A0-offerte-da-enti-esterni"  title="OPPORTUNITÁ DA ENTI ESTERNI">
+
+                                                                            OPPORTUNITÁ DA ENTI ESTERNI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3793" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="https://orientami.poliba.it/tutorato-poliba"  title="Tutorato">
+
+                                                                            Tutorato      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3496" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/attivit%C3%A0-di-collaborazione-tempo-parziale"  title="ATTIVITÀ DI COLLABORAZIONE">
+
+                                                                            ATTIVITÀ DI COLLABORAZIONE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3398" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/tirocini"  title="TIROCINI">
+
+                                                                            TIROCINI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3399" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/placement/home"  title="PLACEMENT">
+
+                                                                            PLACEMENT      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3869" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/programma-erasmus-italiano"  title="ERASMUS ITALIANO">
+
+                                                                            ERASMUS ITALIANO      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li  data-class="" data-width="2" data-hidewcol="" id="tb-megamenu-column-9" class="tb-megamenu-column col-md-2  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-11">
+                                                                    <li class = "mega-caption"><h3>SERVIZI DI SEGRETERIA</h3></li>
+
+                                                                    <li  data-id="3467" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="SERVIZI DI SEGRETERIA" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/ammissioni"  title="AMMISSIONI">
+
+                                                                            AMMISSIONI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3468" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/immatricolazioni"  title="IMMATRICOLAZIONI">
+
+                                                                            IMMATRICOLAZIONI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3469" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/iscrizioni"  title="ISCRIZIONI">
+
+                                                                            ISCRIZIONI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3470" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/node/72/"  title="TRASFER.E PASSAGGI DI CORSO">
+
+                                                                            TRASFER.E PASSAGGI DI CORSO      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3471" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/procedure-la-laurea"  title="PROCEDURE PER LA LAUREA">
+
+                                                                            PROCEDURE PER LA LAUREA      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3472" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/certificati-0"  title="CERTIFICATI">
+
+                                                                            CERTIFICATI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3473" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/tasse"  title="TASSE ">
+
+                                                                            TASSE       </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3474" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/depasas-dematerializzazione-dei-processi-amministrativi-e-dei-servizi-agli-studenti"  title="PRATICHE STUDENTI">
+
+                                                                            PRATICHE STUDENTI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3475" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/modulistica"  title="MODULISTICA">
+
+                                                                            MODULISTICA      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3476" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/segreteririsponde"  title="TICKET STUDENTI">
+
+                                                                            TICKET STUDENTI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3748" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="https://poliba.esse3.cineca.it/Home.do"  title="ACCESSO ESSE3">
+
+                                                                            ACCESSO ESSE3      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li  data-class="" data-width="2" data-hidewcol="" id="tb-megamenu-column-10" class="tb-megamenu-column col-md-2  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-8">
+                                                                    <li class = "mega-caption"><h3>CORSI ED ESAMI DI LINGUE STRANIERE</h3></li>
+
+                                                                    <li  data-id="3477" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="CORSI ED ESAMI DI LINGUE STRANIERE" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/linguistico/centro-linguistico-di-ateneo"  title="CENTRO LINGUISTICO E CORSI DI LINGUA">
+
+                                                                            CENTRO LINGUISTICO E CORSI DI LINGUA      </a>
+
+                                                                    </li>
+
+                                                                    <li class = "mega-caption"><h3>ESAMI DI STATO</h3></li>
+
+                                                                    <li  data-id="3481" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="ESAMI DI STATO" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/informazioni-generali"  title="INFORMAZIONI GENERALI">
+
+                                                                            INFORMAZIONI GENERALI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3482" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/calendario-e-risultati-prove"  title="CALENDARIO E RISULTATI PROVE">
+
+                                                                            CALENDARIO E RISULTATI PROVE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3483" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/node/3222/"  title="ISCRIZIONE ESAMI DI STATO">
+
+                                                                            ISCRIZIONE ESAMI DI STATO      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3484" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/professioni-requisiti-di-accesso-e-articolazione-delle-prove"  title="PROFESSIONI - REQUISITI DI ACC. E ARTIC. PROVE">
+
+                                                                            PROFESSIONI - REQUISITI DI ACC. E ARTIC. PROVE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3485" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/node/693/"  title="MODULISTICA ESAMI DI STATO ">
+
+                                                                            MODULISTICA ESAMI DI STATO       </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3486" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/tracce-desame"  title="TRACCE D’ESAME">
+
+                                                                            TRACCE D’ESAME      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3487" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/node/690/"  title="ABILITATI">
+
+                                                                            ABILITATI      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li  data-class="" data-width="2" data-hidewcol="" id="tb-megamenu-column-11" class="tb-megamenu-column col-md-2  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-7">
+
+                                                                    <li  data-id="3488" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/node/443/"  title="DISABILITÀ E DSA">
+
+                                                                            DISABILITÀ E DSA      </a>
+
+                                                                    </li>
+
+                                                                    <li class = "mega-caption"><h3>VIVERE IL POLIBA</h3></li>
+
+                                                                    <li  data-id="3489" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="VIVERE IL POLIBA" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/didattica/sconti-linee-autobus-flixbus"  title="TRASPORTI E MOBILITÀ">
+
+                                                                            TRASPORTI E MOBILITÀ      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3490" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/node/83/"  title="ASSOCIAZIONI">
+
+                                                                            ASSOCIAZIONI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3491" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/node/84/"  title="ALLOGGI">
+
+                                                                            ALLOGGI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3492" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="https://web.adisupuglia.it/"  title="DIRITTO">
+
+                                                                            DIRITTO      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3493" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/node/85/"  title="SPORT ALLO STUDIO ">
+
+                                                                            SPORT ALLO STUDIO       </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3497" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/node/86/"  title="STUDENT CENTER">
+
+                                                                            STUDENT CENTER      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+
+
+                                                    <li  data-id="3337" data-level="1" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="justify" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-1 mega mega-align-justify dropdown">
+
+                                                        <a href="/it/ricerca/ricerca"  class="dropdown-toggle c-link c-toggler" title="RICERCA">
+
+                                                            RICERCA          <span class="c-arrow c-toggler"></span>
+                                                        </a>
+
+                                                        <ul  data-class="" data-width="" class="x11 dropdown-menu c-menu-type-mega2 c-menu-type-fullwidth row">
+
+                                                            <li  data-class="" data-width="4" data-hidewcol="0" id="tb-megamenu-column-12" class="tb-megamenu-column col-md-4  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-4">
+
+                                                                    <li  data-id="3347" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-e-servizi/dipartimenti"  title="DIPARTIMENTI">
+
+                                                                            DIPARTIMENTI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3348" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="https://research.poliba.it/labs"  title="LABORATORI">
+
+                                                                            LABORATORI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3349" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ricerca/catalogo-della-ricerca-di-ateneo"  title="CATALOGHI DELLA RICERCA">
+
+                                                                            CATALOGHI DELLA RICERCA      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3350" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega c-onepage-link">
+
+                                                                        <a href="#"  title="CENTRI">
+
+                                                                            CENTRI      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li  data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-13" class="tb-megamenu-column col-md-4  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-3">
+                                                                    <li class = "mega-caption"><h3>CENTRI</h3></li>
+
+                                                                    <li  data-id="3677" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="CENTRI" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="http://digilab.poliba.it"  title="DIGILAB">
+
+                                                                            DIGILAB      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3429" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ricerca/ttec-taranto-politecnico"  title="TTEC - Taranto Politecnico">
+
+                                                                            TTEC - Taranto Politecnico      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3428" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/ricerca/centro-di-eccellenza-meccanica-computazionale"  title="CENTRO DI ECCELLENZA IN MECCANICA COMPUTAZIONALE">
+
+                                                                            CENTRO DI ECCELLENZA IN MECCANICA COMPUTAZIONALE      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li  data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-14" class="tb-megamenu-column col-md-4  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-5">
+
+                                                                    <li  data-id="3351" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="https://research.poliba.it/netlabs"  title="RETI DI LABORATORI">
+
+                                                                            RETI DI LABORATORI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3352" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/dottorati-di-ricerca"  title="DOTTORATI DI RICERCA">
+
+                                                                            DOTTORATI DI RICERCA      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3354" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/node/108/"  title="ASSEGNI DI RICERCA">
+
+                                                                            ASSEGNI DI RICERCA      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3355" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="http://www.poliba.it/it/ricerca/progetti-di-ricerca"  title="PROGETTI DI RICERCA">
+
+                                                                            PROGETTI DI RICERCA      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3761" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="https://www.poliba.it/it/ricerca/premio-alla-ricerca"  title="Premio alla Ricerca">
+
+                                                                            Premio alla Ricerca      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+
+
+                                                    <li  data-id="3338" data-level="1" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="justify" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-1 mega mega-align-justify">
+
+                                                        <a href="https://terzamissione.poliba.it/"  title="TERZA MISSIONE" class="c-link">
+
+                                                            TERZA MISSIONE      </a>
+
+                                                    </li>
+
+
+                                                    <li  data-id="3339" data-level="1" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="justify" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-1 mega mega-align-justify dropdown">
+
+                                                        <a href="/it/internazionale/studyingpoliba-international-students"  class="dropdown-toggle c-link c-toggler" title="INTERNAZIONALE">
+
+                                                            INTERNAZIONALE          <span class="c-arrow c-toggler"></span>
+                                                        </a>
+
+                                                        <ul  data-class="" data-width="" class="x11 dropdown-menu c-menu-type-mega2 c-menu-type-fullwidth row">
+
+                                                            <li  data-class="" data-width="3" data-hidewcol="0" id="tb-megamenu-column-15" class="tb-megamenu-column col-md-3  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-8">
+
+                                                                    <li  data-id="3356" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/internazionale/bandi"  title="BANDI">
+
+                                                                            BANDI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3357" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/internazionale/studiare-allestero"  title="STUDIARE ALL’ESTERO">
+
+                                                                            STUDIARE ALL’ESTERO      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3695" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="https://www.poliba.it/it/internazionale/accordi-e-network"  title="ACCORDI E NETWORK">
+
+                                                                            ACCORDI E NETWORK      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3358" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/internazionale/insegnare-allestero"  title="INSEGNARE ALL’ESTERO">
+
+                                                                            INSEGNARE ALL’ESTERO      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3359" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/internazionale/studyingpoliba-international-students"  title="STUDYNG@POLIBA - INTERNATIONAL STUDENTS">
+
+                                                                            STUDYNG@POLIBA - INTERNATIONAL STUDENTS      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3360" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="https://poliba.esse3.cineca.it/Guide/ListaFacoltaCorsi.do;jsessionid=4F3D68146A12D6843566BD2595C53CA2.esse3-poliba-prod-05?cod_lingua=eng"  title="COURSE CATALOGUE">
+
+                                                                            COURSE CATALOGUE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3361" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/internazionale/teaching-poliba-visiting-professors"  title="TEACHING@POLIBA - VISITING PROFESSOR">
+
+                                                                            TEACHING@POLIBA - VISITING PROFESSOR      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3362" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/internazionale/grading-system-italy-and-ects-tables-politecnico-di-bari"  title="ECTS TABLES">
+
+                                                                            ECTS TABLES      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li  data-class="" data-width="3" data-hidewcol="" id="tb-megamenu-column-16" class="tb-megamenu-column col-md-3  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-3">
+                                                                    <li class = "mega-caption"><h3>LIVING POLIBA</h3></li>
+
+                                                                    <li  data-id="3433" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="LIVING POLIBA" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/internazionale/associations"  title="ASSOCIATIONS">
+
+                                                                            ASSOCIATIONS      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3434" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/internazionale/sport"  title="SPORT">
+
+                                                                            SPORT      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3435" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/internazionale/student-center"  title="STUDENT CENTER">
+
+                                                                            STUDENT CENTER      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li  data-class="" data-width="3" data-hidewcol="" id="tb-megamenu-column-17" class="tb-megamenu-column col-md-3  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-6">
+
+                                                                    <li  data-id="3364" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/internazionale/welcome-office"  title="WELCOME OFFICE">
+
+                                                                            WELCOME OFFICE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3365" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/internazionale/international-relations-office"  title="INTERNATIONAL RELATIONS OFFICE">
+
+                                                                            INTERNATIONAL RELATIONS OFFICE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3366" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/internazionale/rector%E2%80%99s-delegates-and-erasmus-coordinators"  title="ERASMUS COORDINATORS &amp; RECTOR&#039;S DELEGATES">
+
+                                                                            ERASMUS COORDINATORS & RECTOR'S DELEGATES      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3367" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/internazionale/eventi-internazionali"  title="EVENTI INTERNAZIONALI">
+
+                                                                            EVENTI INTERNAZIONALI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3368" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/internazionale/poliba2china-project"  title="POLIBA2CHINA">
+
+                                                                            POLIBA2CHINA      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3690" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="http://www.poliba.it/it/internazionale/college-italia-h2cu"  title="COLLEGE ITALIA - H2CU">
+
+                                                                            COLLEGE ITALIA - H2CU      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li  data-class="" data-width="3" data-hidewcol="" id="tb-megamenu-column-18" class="tb-megamenu-column col-md-3  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-5">
+                                                                    <li class = "mega-caption"><h3>MODULISTICA</h3></li>
+
+                                                                    <li  data-id="3436" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="MODULISTICA" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/internazionale/modulistica-studio-incoming"  title="MODULISTICA STUDIO INCOMING">
+
+                                                                            MODULISTICA STUDIO INCOMING      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3437" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/internazionale/modulistica-studio-outgoing"  title="MODULISTICA STUDIO OUTGOING">
+
+                                                                            MODULISTICA STUDIO OUTGOING      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3438" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/internazionale/modulistica-teaching"  title="MODULISTICA TEACHING">
+
+                                                                            MODULISTICA TEACHING      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3439" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/internazionale/modulistica-traineeship"  title="MODULISTICA TRAINEESHIP">
+
+                                                                            MODULISTICA TRAINEESHIP      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3440" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/internazionale/modulistica-training"  title="MODULISTICA TRAINING">
+
+                                                                            MODULISTICA TRAINING      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+
+
+                                                    <li  data-id="3340" data-level="1" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="justify" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-1 mega mega-align-justify dropdown">
+
+                                                        <a href="/it/amministrazione-e-servizi/amministrazione-e-servizi"  class="dropdown-toggle c-link c-toggler" title="SERVIZI">
+
+                                                            SERVIZI          <span class="c-arrow c-toggler"></span>
+                                                        </a>
+
+                                                        <ul  data-class="" data-width="" class="x11 dropdown-menu c-menu-type-mega2 c-menu-type-fullwidth row">
+
+                                                            <li  data-class="" data-width="4" data-hidewcol="0" id="tb-megamenu-column-19" class="tb-megamenu-column col-md-4  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-9">
+
+                                                                    <li  data-id="3370" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-e-servizi/amministrazione"  title="AMMINISTRAZIONE">
+
+                                                                            AMMINISTRAZIONE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3371" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-e-servizi/strutture-amministrative"  title="STRUTTURE AMMINISTRATIVE">
+
+                                                                            STRUTTURE AMMINISTRATIVE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3372" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-e-servizi/dipartimenti"  title="DIPARTIMENTI">
+
+                                                                            DIPARTIMENTI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3373" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-e-servizi/centri"  title="CENTRI">
+
+                                                                            CENTRI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3374" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-e-servizi/biblioteche"  title="BIBLIOTECHE">
+
+                                                                            BIBLIOTECHE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3375" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="https://www.poliba.it/it/node/16972"  title="Carta dei servizi">
+
+                                                                            Carta dei servizi      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3376" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-e-servizi/sicurezza"  title="SICUREZZA">
+
+                                                                            SICUREZZA      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3752" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-e-servizi/eduroam"  title="EDUROAM">
+
+                                                                            EDUROAM      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3804" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-e-servizi/servizio-civile-universale-2023"  title="SERVIZIO CIVILE">
+
+                                                                            SERVIZIO CIVILE      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li  data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-20" class="tb-megamenu-column col-md-4  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-8">
+                                                                    <li class = "mega-caption"><h3>BANDI E CONCORSI</h3></li>
+
+                                                                    <li  data-id="3441" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="BANDI E CONCORSI" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-e-servizi/bandi-docenti"  title="BANDI PER DOCENTI">
+
+                                                                            BANDI PER DOCENTI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3701" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-e-servizi/tempo-determinato"  title="BANDI PERSONALE TAB A TEMPO DETERMINATO">
+
+                                                                            BANDI PERSONALE TAB A TEMPO DETERMINATO      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3704" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-e-servizi/progressione-economica-verticale"  title="PROGRESSIONI ECONOMICHE VERTICALI">
+
+                                                                            PROGRESSIONI ECONOMICHE VERTICALI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3700" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-e-servizi/mobilit%C3%A0-volontaria-esterna"  title="MOBILITA&#039; VOLONTARIA ESTERNA">
+
+                                                                            MOBILITA' VOLONTARIA ESTERNA      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3699" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-e-servizi/bandi-dirigenti"  title="BANDI DIRIGENTI">
+
+                                                                            BANDI DIRIGENTI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3443" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-e-servizi/altri-concorsi-e-selezioni"  title="ALTRI CONCORSI E SELEZIONI">
+
+                                                                            ALTRI CONCORSI E SELEZIONI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3444" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-e-servizi/attribuzione-classe-stipendiale-personale-docente"  title="ATTRIBUZIONE CLASSE STIPENDIALE PERSONALE DOCENTE">
+
+                                                                            ATTRIBUZIONE CLASSE STIPENDIALE PERSONALE DOCENTE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3445" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-e-servizi/attribuzione-una-tantum"  title="ATTRIBUZIONE UNA TANTUM">
+
+                                                                            ATTRIBUZIONE UNA TANTUM      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li  data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-21" class="tb-megamenu-column col-md-4  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-9">
+
+                                                                    <li  data-id="3378" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-e-servizi/albo-online"  title="ALBO ONLINE">
+
+                                                                            ALBO ONLINE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3379" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-e-servizi/gare-e-appalti"  title="GARE E CONTRATTI">
+
+                                                                            GARE E CONTRATTI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3759" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="https://poliba.tuttogare.it"  title="TUTTO GARE">
+
+                                                                            TUTTO GARE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3380" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-trasparente"  title="AMMINISTRAZIONE TRASPARENTE">
+
+                                                                            AMMINISTRAZIONE TRASPARENTE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3382" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-e-servizi/accesso-dati-alle-pubbliche-amministrazioni"  title="ACCESSO DATI ALLE PA">
+
+                                                                            ACCESSO DATI ALLE PA      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3383" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/amministrazione-e-servizi/abilitazione-scientifica-nazionale"  title="ABILITAZIONE SCIENTIFICO NAZIONALE">
+
+                                                                            ABILITAZIONE SCIENTIFICO NAZIONALE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3384" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/conf-inc-rel/conferimento-di-incarichi-di-relatore"  title="INCARICO A RELATORI ESTERNI PER CONVEGNI E SEMINARI">
+
+                                                                            INCARICO A RELATORI ESTERNI PER CONVEGNI E SEMINARI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3742" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="https://www.poliba.it/it/amministrazione-e-servizi/bandi-il-personale-tab"  title="BANDI PERSONALE TAB TEMPO INDETERMINATO">
+
+                                                                            BANDI PERSONALE TAB TEMPO INDETERMINATO      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3873" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="https://www.poliba.it/it/amministrazione-e-servizi/servizio-di-counseling-psicologico-poliba"  title="Servizio di consueling psicologico">
+
+                                                                            Servizio di consueling psicologico      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+
+
+                                                    <li  data-id="3341" data-level="1" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="justify" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-1 mega mega-align-justify dropdown">
+
+                                                        <a href="/it/Q%26S"  class="dropdown-toggle c-link c-toggler" title="QUALITÀ E SOSTENIBILITÀ">
+
+                                                            QUALITÀ E SOSTENIBILITÀ          <span class="c-arrow c-toggler"></span>
+                                                        </a>
+
+                                                        <ul  data-class="" data-width="" class="x11 dropdown-menu c-menu-type-classic c-pull-left">
+
+                                                            <li  data-class="" data-width="12" data-hidewcol="0" id="tb-megamenu-column-22" class="tb-megamenu-column megamenu-column-single col-md-12  mega-col-nav">
+                                                                <ul  class="tb-megamenu-subnav mega-nav level-1 items-9">
+
+                                                                    <li  data-id="3385" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/QS/commissioni-paritetiche-studentidocenti"  title="COMMISSIONI PARITETICHE STUDENTI/DOCENTI">
+
+                                                                            COMMISSIONI PARITETICHE STUDENTI/DOCENTI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3386" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/QS/commissioni-di-esperti-della-valutazione"  title="COMMISSIONI ESPERTI DELLA VALUTAZIONE">
+
+                                                                            COMMISSIONI ESPERTI DELLA VALUTAZIONE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3387" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/QS/attori-qs"  title="ATTORI Q&amp;S">
+
+                                                                            ATTORI Q&S      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3388" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/QS/nucleo-di-valutazione"  title="NUCLEO DI VALUTAZIONE">
+
+                                                                            NUCLEO DI VALUTAZIONE      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3389" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/QS/presidio-della-qualit%C3%A0-di-ateneo"  title="PRESIDIO DELLA QUALITÀ DI ATENEO">
+
+                                                                            PRESIDIO DELLA QUALITÀ DI ATENEO      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3390" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/QS/stakeholders"  title="STAKEHOLDERS">
+
+                                                                            STAKEHOLDERS      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3391" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="/it/QS/ascolto-parti-interessate-api"  title="ASCOLTO PARTI INTERESSATE (API)">
+
+                                                                            ASCOLTO PARTI INTERESSATE (API)      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3392" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="http://www.poliba.it/it/documenti"  title="DOCUMENTI">
+
+                                                                            DOCUMENTI      </a>
+
+                                                                    </li>
+
+
+                                                                    <li  data-id="3848" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
+
+                                                                        <a href="http://www.poliba.it/it/QS/ava-3"  title="AVA 3">
+
+                                                                            AVA 3      </a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+
+
+                                                    <li  data-id="3604" data-level="1" data-type="menu_item" data-class="mobile" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-1 mega mobile">
+
+                                                        <a href="http://www.poliba.it/node/2178"  title="STUDENTI FUTURI" class="c-link">
+
+                                                            STUDENTI FUTURI      </a>
+
+                                                    </li>
+
+
+                                                    <li  data-id="3605" data-level="1" data-type="menu_item" data-class="mobile" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-1 mega mobile">
+
+                                                        <a href="http://www.poliba.it/node/390"  title="STUDENTI ISCRITTI" class="c-link">
+
+                                                            STUDENTI ISCRITTI      </a>
+
+                                                    </li>
+
+
+                                                    <li  data-id="3609" data-level="1" data-type="menu_item" data-class="mobile" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-1 mega mobile">
+
+                                                        <a href="/it/imprese-e-territorio/enti-e-imprese"  title="ENTI E IMPRESE" class="c-link">
+
+                                                            ENTI E IMPRESE      </a>
+
+                                                    </li>
+
+
+                                                    <li  data-id="3607" data-level="1" data-type="menu_item" data-class="mobile" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-1 mega mobile">
+
+                                                        <a href="/it/didattica/laureati"  title="LAUREATI" class="c-link">
+
+                                                            LAUREATI      </a>
+
+                                                    </li>
+
+
+                                                    <li  data-id="3608" data-level="1" data-type="menu_item" data-class="mobile" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-1 mega mobile">
+
+                                                        <a href="/it/amministrazione-e-servizi/personale"  title="PERSONALE" class="c-link">
+
+                                                            PERSONALE      </a>
+
+                                                    </li>
+
+
+                                                    <li  data-id="3606" data-level="1" data-type="menu_item" data-class="mobile" data-xicon="" data-caption="" data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-1 mega mobile">
+
+                                                        <a href="/it/internazionale/studyingpoliba-international-students"  title="STUDENTI STRANIERI" class="c-link">
+
+                                                            STUDENTI STRANIERI      </a>
+
+                                                    </li>
+
+                                                    <li class="c-search-toggler-wrapper">
+                                                        <a href="#" class="c-btn-icon c-search-toggler">
+                                                            <i class="fa fa-search"></i>
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </header>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<div  style="padding-top: 30px; padding-bottom: 30px; " class="nd-region">
+
+
+
+    <div class = "container">
+
+        <div  id="Main-Content" class="row">
+
+
+
+
+            <div  id="content_top" class="col-md-12 ">
+
+                <div class="region region-content-top">
+                    <div id="block-block-44" class="block block-block">
+
+
+                        <div class="content">
+                            <div  class = 'c-layout-breadcrumbs-1 c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both '>
+                                <div class = "c-breadcrumbs-wrapper">
+                                    <div class="container">
+                                        <div class="c-page-title c-pull-left">
+                                            <h3 class="c-font-uppercase c-font-sbold">Biblioteca PoliLibrary</h3>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div  id="content" class="col-md-9 " style="padding-top: 30px; padding-bottom: 40px; ">
+
+                <div class="region region-content">
+                    <div id="block-system-main" class="block block-system">
+
+
+                        <div class="content">
+
+                            <div id="node-14345" class="node node-sba clearfix" about="/it/sba/biblioteca-polilibrary" typeof="sioc:Item foaf:Document">
+
+
+                                <span property="dc:title" content="Biblioteca PoliLibrary" class="rdf-meta element-hidden"></span>
+
+                                <div class="content">
+
+                                    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+                                    <script>
+                                        function mostra(nelemento) {
+                                            if (document.getElementById("nascosto"+nelemento).style.display== "none"){
+                                                document.getElementById("nascosto"+nelemento).style.display = "block";
+                                                document.getElementById("mostra"+nelemento).innerHTML = "[-]&nbsp;";
+                                            }else{
+                                                document.getElementById("nascosto"+nelemento).style.display= "none";
+                                                document.getElementById("mostra"+nelemento).innerHTML = "[+]&nbsp;";
+                                            }
+                                        }
+                                    </script>
+
+                                    <SCRIPT Language="JavaScript">
+                                        function UpdateCorsi() {
+                                            document.Luigi.submit();
+                                            document.Luigi.idDivisione.options[0].selected = true;
+                                        }
+                                    </SCRIPT>
+
+
+
+                                    <div class="field field-name-body field-type-text-with-summary field-label-hidden"><p>&nbsp;</p>
+
+                                        <div>&nbsp;</div>
+
+                                        <div>
+
+                                            <div id="map"></div>
+                                            <p id="test">
+                                                Biblioteca Polilibrary
+                                            </p>
+
+
+                                            <script>
+
+
+                                                const map = L.map('map').setView([41.108859, 16.878372], 20);
+
+                                                const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                                    maxZoom: 19,
+                                                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                                                }).addTo(map);
+
+
+                                            </script>
+                                        </div>
+
+                                        <div>&nbsp;</div>
+
+                                        <div><span style="color:#ff3366"><span style="font-size:16px"><span style="font-family:arial,helvetica,sans-serif"><strong>ORARIO APERTURA</strong></span></span></span></div>
+
+                                        <div>&nbsp;</div>
+
+                                        <table align="left" border="1" cellpadding="0" cellspacing="0" style="width:700px">
+                                            <tbody>
+                                            <tr>
+                                                <td style="width:102px">
+                                                    <p class="rtecenter"><span style="font-size:14px"><strong>Lunedì</strong></span></p>
+                                                </td>
+                                                <td style="width:102px">
+                                                    <p class="rtecenter"><span style="font-size:14px"><strong>Martedì</strong></span></p>
+                                                </td>
+                                                <td style="width:102px">
+                                                    <p class="rtecenter"><span style="font-size:14px"><strong>Mercoledì</strong></span></p>
+                                                </td>
+                                                <td style="width:102px">
+                                                    <p class="rtecenter"><span style="font-size:14px"><strong>Giovedì</strong></span></p>
+                                                </td>
+                                                <td style="width:102px">
+                                                    <p class="rtecenter"><span style="font-size:14px"><strong>Venerdì</strong></span></p>
+                                                </td>
+                                                <td style="width:102px">
+                                                    <p class="rtecenter"><span style="font-size:14px"><strong>Sabato</strong></span></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:102px">
+                                                    <p class="rtecenter"><span style="color:#000000"><span style="font-size:14px">09.00-20.00</span></span></p>
+                                                </td>
+                                                <td style="width:102px">
+                                                    <p class="rtecenter"><span style="color:#000000"><span style="font-size:14px">09.00-20.00</span></span></p>
+                                                </td>
+                                                <td style="width:102px">
+                                                    <p class="rtecenter"><span style="color:#000000"><span style="font-size:14px">09.00-20.00</span></span></p>
+                                                </td>
+                                                <td style="width:102px">
+                                                    <p class="rtecenter"><span style="color:#000000"><span style="font-size:14px">09.00-20.00</span></span></p>
+                                                </td>
+                                                <td style="width:102px">
+                                                    <p class="rtecenter"><span style="color:#000000"><span style="font-size:14px">09.00-20.00</span></span></p>
+                                                </td>
+                                                <td style="width:102px">
+                                                    <p class="rtecenter"><span style="color:#000000"><span style="font-size:14px">09.00-13.30</span></span></p>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <div class="rtecenter">&nbsp;</div>
+
+                                        <div class="rtecenter">&nbsp;</div>
+
+                                        <div class="rtecenter">&nbsp;</div>
+
+                                        <div class="rtecenter">&nbsp;</div>
+
+                                        <div>&nbsp;</div>
+
+                                        <div><span style="color:#000000"><span style="font-size:14px"><strong>Posti a sedere: 128</strong></span></span></div>
+
+                                        <div>
+                                            <div><span style="font-family:arial,helvetica,sans-serif"><span style="color:#000000"><span style="font-size:14px"><strong>Postazioni internet :</strong>&nbsp;<strong>16</strong></span></span></span></div>
+                                        </div>
+
+                                        <div>&nbsp;</div>
+
+                                        <div class="rtejustify"><span style="color:#ff3366"><span style="font-size:16px"><span style="font-family:arial,helvetica,sans-serif"><strong>SERVIZI OFFERTI</strong></span></span></span></div>
+
+                                        <div class="rtejustify">&nbsp;</div>
+
+                                        <ul>
+                                            <li>
+                                                <div><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><u><strong><a href="http://www.poliba.it/it/sba/accesso-e-consultazione" target="_blank"><span style="color:#008080">Accesso e consultazione</span></a></strong></u></span></span></div>
+                                            </li>
+                                            <li>
+                                                <div><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><u><strong><a href="http://www.poliba.it/it/sba/reference-consulenza-agli-utenti" target="_blank"><span style="color:#008080">Reference: consulenza agli utenti</span></a></strong></u></span></span></div>
+                                            </li>
+                                            <li>
+                                                <div><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><u><strong><a href="http://www.poliba.it/it/sba/prestito" target="_blank"><span style="color:#008080">Prestito</span></a></strong></u></span></span></div>
+                                            </li>
+                                            <li>
+                                                <div><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><u><strong><a href="http://www.poliba.it/it/sba/postazioni-internet" target="_blank"><span style="color:#008080">Postazioni internet</span></a></strong></u></span></span></div>
+                                            </li>
+                                            <li>
+                                                <div><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><u><strong><a href="http://www.poliba.it/it/sba/document-delivery-dd" target="_blank"><span style="color:#008080">Document Delivery</span></a></strong></u></span></span></div>
+                                            </li>
+                                            <li>
+                                                <div><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><a href="http://www.poliba.it/it/sba/formazione-utenti" target="_blank"><span style="color:#008080"><u><strong>Formazione utenti</strong></u></span></a></span></span></div>
+                                            </li>
+                                            <li>
+                                                <div><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><u><a href="/sites/default/files/biblio/regole_per_eventi_13.11.2023_1_1.pdf" target="_blank"><span style="color:#008080"><strong>Concessione spazi per eventi</strong></span></a></u></span></span></div>
+                                            </li>
+                                        </ul>
+
+                                        <div>&nbsp;</div>
+
+                                        <div style="clear: both;">
+                                            <div><span style="color:#ff3366"><span style="font-size:16px"><span style="font-family:arial,helvetica,sans-serif"><strong>PERSONALE:</strong></span></span></span></div>
+
+                                            <div>&nbsp;</div>
+                                        </div>
+
+                                        <div><!--<tr>
+			<td>
+			<div><span style="font-size:16px"><strong>sig.ra Grazia Mancini </strong></span></div>
+			</td>
+			<td>
+			<div><span style="font-size:16px"><strong>grazia.mancini@poliba.it</strong></span></div>
+			</td>
+			<td>
+			<div><span style="font-size:16px"><strong>tel. 0805963478</strong></span></div>
+			</td>
+		</tr>--></div>
+
+                                        <table border="1" cellpadding="0" cellspacing="0" style="width:700px">
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <p><span style="color:#000000"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">&nbsp;Giacoma Defrancesco</span></span></span></p>
+                                                </td>
+                                                <td>
+                                                    <p class="rtecenter"><span style="color:#000000"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>giacoma.defrancesco@poliba.it</strong></span></span></span></p>
+                                                </td>
+                                                <td>
+                                                    <p class="rtecenter"><span style="color:#000000"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">tel. 0805963409</span></span></span></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p><span style="color:#000000"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">&nbsp;Marina Liso</span></span></span></p>
+                                                </td>
+                                                <td>
+                                                    <p class="rtecenter"><span style="color:#000000"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>marina.liso@poliba.it</strong></span></span></span></p>
+                                                </td>
+                                                <td>
+                                                    <p class="rtecenter"><span style="color:#000000"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">tel. 0805963007</span></span></span></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p><span style="color:#000000"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">&nbsp;Giulia Ranieri</span></span></span></p>
+                                                </td>
+                                                <td>
+                                                    <div class="rtecenter"><span style="color:#000000"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>giulia.ranieri@poliba.it</strong></span></span></span></div>
+                                                </td>
+                                                <td>
+                                                    <p class="rtecenter"><span style="color:#000000"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">tel. 0805963396</span></span></span></p>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <p>&nbsp;</p>
+
+                                        <div><span style="color:#000000"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Campus “<em>Ernesto Quagliariello</em>”, Via E. Orabona, 4 - 70125 Bari </span></span></span></div>
+
+                                        <div><span style="color:#000000"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Corpo a Z 3° piano</span></span></span></div>
+
+                                        <div><span style="color:#000000"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Front-office: tel.&nbsp;0805963005 - 3006</span></span></span></div>
+
+                                        <div><span style="color:#000000"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>polilibrary@poliba.it</strong></span></span></span></div>
+
+                                        <div>&nbsp;</div>
+
+                                        <div>&nbsp;</div>
+                                    </div>  </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div  id="sidebar" class="col-md-3 " style="padding-top: 30px; padding-bottom: 40px; ">
+
+                <div class="region region-sidebar">
+                    <div id="block-block-64" class="block block-block">
+
+
+                        <div class="content">
+                            <div  id = 'menuJ'><h2>SBA</h2></div>
+                            <div class = "c-layout-sidebar-menu"><ul class = "c-sidebar-menu c-margin-b-30" id = "sidebar-menu-1"><li  class="first leaf"><a href="/it/sba/sba-sistema-bibliotecario-di-ateneo">Home SBA</a></li>
+                                <li  class="expanded c-dropdown"><a href="/it/%23" title="" class="c-toggler">Chi siamo <span class="c-arrow"></span></a><ul class="c-dropdown-menu"><li  class="first leaf"><a href="/it/sba/contatti">Contatti</a></li>
+                                    <li  class="leaf"><a href="/it/sba/organizzazione">Organizzazione</a></li>
+                                    <li  class="last leaf"><a href="https://politecnicobari.sharepoint.com/sites/sba/SitePages/Pagina%20iniziale.aspx" title="">Area riservata</a></li>
+                                </ul></li>
+                                <li  class="expanded c-dropdown"><a href="/it/%23" title="" class="c-toggler">Biblioteche <span class="c-arrow"></span></a><ul class="c-dropdown-menu"><li  class="first leaf"><a href="http://www.poliba.it/it/sba/biblioteca-polilibrary" title="">PoliLibrary</a></li>
+                                    <li  class="leaf"><a href="/it/sba/biblioteca-michele-brucoli">Michele Brucoli</a></li>
+                                    <li  class="leaf"><a href="/it/sba/biblioteca-marcus-vitruvius-pollio">Marcus Vitruvius Pollio</a></li>
+                                    <li  class="leaf"><a href="/it/sba/fondo-claudio-damato-guerrieri">Fondo Claudio D'Amato Guerrieri</a></li>
+                                    <li  class="leaf"><a href="/it/sba/biblioteca-magna-grecia">Magna Grecia</a></li>
+                                    <li  class="leaf"><a href="/it/sba/biblioteca-ing-civile-ambientale-territorio-edile-e-chimica">Dipartimento Ing. Civile, Ambientale, Territorio, Edile e Chimica</a></li>
+                                    <li  class="last leaf"><a href="http://www.uniba.it/ricerca/dipartimenti/fisica/biblioteca" title="">Dipartimento interateneo di fisica</a></li>
+                                </ul></li>
+                                <li  class="leaf"><a href="http://www.poliba.it//biblioteca-digitale" title="">Biblioteca digitale</a></li>
+                                <li  class="expanded c-dropdown"><a href="/it/%23" title="" class="c-toggler">Servizi <span class="c-arrow"></span></a><ul class="c-dropdown-menu"><li  class="first leaf"><a href="/it/sba/accesso-e-consultazione">Accesso e consultazione</a></li>
+                                    <li  class="leaf"><a href="/it/sba/reference-consulenza-agli-utenti">Reference: consulenza agli utenti</a></li>
+                                    <li  class="leaf"><a href="/it/sba/prestito">Prestito</a></li>
+                                    <li  class="leaf"><a href="/it/sba/copie-e-stampe">Copie e stampe</a></li>
+                                    <li  class="leaf"><a href="/it/sba/postazioni-internet">Postazioni internet</a></li>
+                                    <li  class="leaf"><a href="/it/sba/formazione-utenti">Formazione utenti</a></li>
+                                    <li  class="leaf"><a href="/it/sba/document-delivery-dd">Document delivery</a></li>
+                                    <li  class="last leaf"><a href="/it/sba/chiedi-al-bibliotecario">Chiedi al bibliotecario</a></li>
+                                </ul></li>
+                                <li  class="leaf"><a href="/it/sba/archivio-eventi">Archivio Eventi</a></li>
+                                <li  class="last expanded c-dropdown"><a href="/it/%23" title="" class="c-toggler">Cataloghi <span class="c-arrow"></span></a><ul class="c-dropdown-menu"><li  class="first leaf"><a href="https://iris.poliba.it" title="">Catalogo della ricerca - IRIS</a></li>
+                                    <li  class="last leaf"><a href="https://poliba.primo.exlibrisgroup.com/discovery/search?vid=39PBA_INST:39PBA" title="">Catalogo di Ateneo</a></li>
+                                </ul></li>
+                            </ul></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<div  class="nd-region">
+
+
+
+    <div class = "container-fluid">
+
+        <div  id="Content-FullWidth" class="row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<div  class="nd-region">
+
+
+
+    <div class = "container-fluid">
+
+        <div  id="Footer-FullWidth" class="row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div  id="footer" class="col-md-12 ">
+
+                <div class="region region-footer">
+                    <div id="block-block-37" class="block block-block">
+
+
+                        <div class="content">
+                            <div  style = 'padding-top: 4px; background-color: #008295; '>
+                            </div>
+                            <div  style = 'padding-top: 4px; background-color: #F6F6F7; '>
+                                <div  class = 'container '>
+                                    <div  class = 'row ' style = 'padding-bottom: 95px; padding-top: 95px; '>
+                                        <div  class = 'col-md-3 '>
+                                            <span  class = 'align-left '><img style="" typeof="foaf:Image" class="img-responsive" src="https://www.poliba.it/sites/default/files/poliba.png" alt="Alt" title="" /></span>
+                                        </div>
+                                        <div  class = 'col-md-3 ' id = 'footermenup'>
+                                            <div  class = 'c-content-ver-nav '><!-- Navigation Menu -->
+                                                <ul class="c-menu c-arrow-dot c-square multicolor ">
+                                                    <ul><li  class="first leaf c-bg-before-blue"><a href="/it/amministrazione-trasparente" title="">Amministrazione trasparente</a></li>
+                                                        <li  class="leaf c-bg-before-red"><a href="/it/amministrazione-trasparente/bandi-di-gara-e-contratti" title="">Bandi di gara e contratti</a></li>
+                                                        <li  class="leaf c-bg-before-green"><a href="/it/amministrazione-trasparente/bilancio-preventivo-e-consuntivo" title="">Bilanci di Ateneo</a></li>
+                                                        <li  class="leaf c-bg-before-purple"><a href="/it/amministrazione-trasparente/bandi-di-concorso" title="">Bandi di Concorso</a></li>
+                                                        <li  class="leaf c-bg-before-yellow"><a href="/it/amministrazione-e-servizi/posta-certificata" title="">Posta certificata</a></li>
+                                                        <li  class="leaf c-bg-before-blue"><a href="https://www.arcopu.com/it/cosa-facciamo/i-concerti-del-politecnico-4--ed----a-a--2022-2023" title="">Concerti del Politecnico</a></li>
+                                                        <li  class="last leaf c-bg-before-red"><a href="https://www.arcopu.com/it/cosa-facciamo/poliba-chorus-coro-del-politecnico-di-bari" title="">Poliba Chorus</a></li>
+                                                    </ul></ul>
+                                            </div>
+                                        </div>
+                                        <div  class = 'col-md-3 ' id = 'footermenup'>
+                                            <div  class = 'c-content-ver-nav '><!-- Navigation Menu -->
+                                                <ul class="c-menu c-arrow-dot c-square multicolor ">
+                                                    <ul><li  class="first leaf c-bg-before-blue"><a href="/it/ateneo/piano-strategico" title="">Piano Strategico</a></li>
+                                                        <li  class="leaf c-bg-before-red"><a href="/it/QS/presidio-della-qualit%C3%A0-di-ateneo" title="">Presidio di Qualità</a></li>
+                                                        <li  class="leaf c-bg-before-green"><a href="/it/ateneo/elenco-siti-tematici" title="">Elenco Siti Tematici</a></li>
+                                                        <li  class="leaf c-bg-before-purple"><a href="http://catalogoservizi.poliba.it/" title="">Info servii orari accesso al pubblico</a></li>
+                                                        <li  class="leaf c-bg-before-yellow"><a href="/it/amministrazione-e-servizi/albo-online" title="">Albo online</a></li>
+                                                        <li  class="last leaf c-bg-before-blue"><a href="/it/amministrazione-e-servizi/servizi-line" title="">Servizi on line</a></li>
+                                                    </ul></ul>
+                                            </div>
+                                        </div>
+                                        <div  class = 'col-md-3 ' id = 'footermenup'>
+                                            <div  class = 'c-content-ver-nav '><!-- Navigation Menu -->
+                                                <ul class="c-menu c-arrow-dot c-square multicolor ">
+                                                    <ul><li  class="first leaf c-bg-before-blue"><a href="https://www.poliba.it/it/node/16972" title="">Carta dei Servizi</a></li>
+                                                        <li  class="leaf c-bg-before-red"><a href="/it/ateneo/elezioni" title="">Elezioni</a></li>
+                                                        <li  class="leaf c-bg-before-green"><a href="/it/amministrazione-e-servizi/accessibilit%C3%A0" title="">Accessibilità</a></li>
+                                                        <li  class="leaf c-bg-before-purple"><a href="/it/privacy/protezione-dei-dati-personali" title="">Privacy</a></li>
+                                                        <li  class="leaf c-bg-before-yellow"><a href="/it/ateneo/note-legali" title="">Note Legali</a></li>
+                                                        <li  class="last leaf c-bg-before-blue"><a href="https://alumni.poliba.it/" title="">Poliba Alumni Association</a></li>
+                                                    </ul></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div  class = ' text-black' style = 'background-color: #ffffff; '>
+                                    <div  class = 'container '>
+                                        <div  class = 'row ' style = 'padding-bottom: 40px; padding-top: 40px; ' id = 'copyright'>
+                                            <div  class = 'col-md-8 '>
+                                                <p>Copyright © 2019. Politecnico di Bari - Via Amendola 126/b - 70126 Bari - c.f. 93051590722 | p.i. 04301530723</p>
+                                            </div>
+                                            <div  class = 'col-md-4 '>
+                                                <p class="rteright"><a href="../node/409">Note Legali</a> - <a href="../node/5210">Centro Privacy</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="block-block-80" class="block block-block">
+
+                        <h2>__________________________________________________________________________________________________________________________________________</h2>
+
+                        <div class="content">
+                            <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">--></script>
+                            <script>
+                                /*
+                                //console.log('De\' remi facemmo ali');
+                                //$('a').each(function(){
+                                 //if($(this).prop('title') == 'ATENEO'){
+                                //  $(this).html('ANETEO');
+                                // }
+                                //if($(this).attr('title') == 'ATENEO'){
+                                 // $(this).html('ANETEO');
+                                // }
+                                //});
+                                //$('#quicktabs-tabpage-consiglio_di_amministrazione-1').find('.views-row-first').find('.views-field-title').html('Prof. Tommaso DI NOIA');
+
+</script>  </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script type="text/javascript">
+    <!--//--><![CDATA[//><!--
+    function euCookieComplianceLoadScripts() {}
+    //--><!]]>
+</script>
+<script type="text/javascript">
+    <!--//--><![CDATA[//><!--
+    var eu_cookie_compliance_cookie_name = "";
+    //--><!]]>
+</script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/modules/eu_cookie_compliance/js/eu_cookie_compliance.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/modules/jquery_update/replace/jquery/1.10/jquery.min.js?v=1.10.2"></script>
+<script type="text/javascript" src="https://www.poliba.it/misc/jquery.once.js?v=1.2"></script>
+<script type="text/javascript" src="https://www.poliba.it/misc/drupal.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/modules/jquery_update/replace/ui/external/jquery.cookie.js?v=67fb34f6a866c40d0570"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/modules/admin_menu/admin_devel/admin_devel.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/default/files/languages/it_Y-dxfs1QQ3P6fOXNBZai201929U2R6WLuVA3N2bGU7I.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/plugins/jquery-migrate.min.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/plugins/bootstrap/js/bootstrap.min.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/plugins/jquery.easing.min.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/plugins/reveal-animate/wow.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/plugins/owl-carousel/owl.carousel.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/plugins/counterup/jquery.waypoints.min.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/plugins/counterup/jquery.counterup.min.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/plugins/fancybox/jquery.fancybox.pack.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/plugins/slider-for-bootstrap/js/bootstrap-slider.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/plugins/zoom-master/jquery.zoom.min.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/plugins/isotope/isotope.pkgd.min.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/plugins/isotope/imagesloaded.pkgd.min.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/plugins/isotope/packery-mode.pkgd.min.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/plugins/ilightbox/js/jquery.requestAnimationFrame.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/plugins/ilightbox/js/jquery.mousewheel.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/plugins/ilightbox/js/ilightbox.packed.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/plugins/progress-bar/progressbar.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/base/js/scripts/reveal-animate/reveal-animate.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/base/js/app.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/base/js/components.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/base/js/components-shop.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/plugins/gmaps/gmaps.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/assets/plugins/gmaps/api.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/js/jquery.mb.YTPlayer.js?sdiouv"></script>
+<script type="text/javascript" src="https://www.poliba.it/sites/all/themes/jango/js/drupal.js?sdiouv"></script>
+<script type="text/javascript">
+    <!--//--><![CDATA[//><!--
+    jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"it\/","ajaxPageState":{"theme":"jango_sub","theme_token":"b-CHSqRz-ZX18brJJjUXavy-M-FyY_48fGR-w0Sxw4Q","js":{"0":1,"1":1,"sites\/all\/modules\/eu_cookie_compliance\/js\/eu_cookie_compliance.js":1,"sites\/all\/modules\/jquery_update\/replace\/jquery\/1.10\/jquery.min.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/all\/modules\/jquery_update\/replace\/ui\/external\/jquery.cookie.js":1,"sites\/all\/modules\/admin_menu\/admin_devel\/admin_devel.js":1,"public:\/\/languages\/it_Y-dxfs1QQ3P6fOXNBZai201929U2R6WLuVA3N2bGU7I.js":1,"sites\/all\/themes\/jango\/assets\/plugins\/jquery-migrate.min.js":1,"sites\/all\/themes\/jango\/assets\/plugins\/bootstrap\/js\/bootstrap.min.js":1,"sites\/all\/themes\/jango\/assets\/plugins\/jquery.easing.min.js":1,"sites\/all\/themes\/jango\/assets\/plugins\/reveal-animate\/wow.js":1,"sites\/all\/themes\/jango\/assets\/plugins\/cubeportfolio\/js\/jquery.cubeportfolio.min.js":1,"sites\/all\/themes\/jango\/assets\/plugins\/owl-carousel\/owl.carousel.js":1,"sites\/all\/themes\/jango\/assets\/plugins\/counterup\/jquery.waypoints.min.js":1,"sites\/all\/themes\/jango\/assets\/plugins\/counterup\/jquery.counterup.min.js":1,"sites\/all\/themes\/jango\/assets\/plugins\/fancybox\/jquery.fancybox.pack.js":1,"sites\/all\/themes\/jango\/assets\/plugins\/slider-for-bootstrap\/js\/bootstrap-slider.js":1,"sites\/all\/themes\/jango\/assets\/plugins\/zoom-master\/jquery.zoom.min.js":1,"sites\/all\/themes\/jango\/assets\/plugins\/isotope\/isotope.pkgd.min.js":1,"sites\/all\/themes\/jango\/assets\/plugins\/isotope\/imagesloaded.pkgd.min.js":1,"sites\/all\/themes\/jango\/assets\/plugins\/isotope\/packery-mode.pkgd.min.js":1,"sites\/all\/themes\/jango\/assets\/plugins\/ilightbox\/js\/jquery.requestAnimationFrame.js":1,"sites\/all\/themes\/jango\/assets\/plugins\/ilightbox\/js\/jquery.mousewheel.js":1,"sites\/all\/themes\/jango\/assets\/plugins\/ilightbox\/js\/ilightbox.packed.js":1,"sites\/all\/themes\/jango\/assets\/plugins\/progress-bar\/progressbar.js":1,"sites\/all\/themes\/jango\/assets\/base\/js\/scripts\/reveal-animate\/reveal-animate.js":1,"sites\/all\/themes\/jango\/assets\/base\/js\/app.js":1,"sites\/all\/themes\/jango\/assets\/base\/js\/components.js":1,"sites\/all\/themes\/jango\/assets\/base\/js\/components-shop.js":1,"sites\/all\/themes\/jango\/assets\/plugins\/gmaps\/gmaps.js":1,"sites\/all\/themes\/jango\/assets\/plugins\/gmaps\/api.js":1,"sites\/all\/themes\/jango\/js\/jquery.mb.YTPlayer.js":1,"sites\/all\/themes\/jango\/js\/drupal.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/aggregator\/aggregator.css":1,"modules\/book\/book.css":1,"modules\/comment\/comment.css":1,"sites\/all\/modules\/date\/date_api\/date.css":1,"sites\/all\/modules\/date\/date_popup\/themes\/datepicker.1.7.css":1,"sites\/all\/modules\/date\/date_repeat_field\/date_repeat_field.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"modules\/poll\/poll.css":1,"modules\/forum\/forum.css":1,"sites\/all\/modules\/views\/css\/views.css":1,"sites\/all\/modules\/ckeditor\/css\/ckeditor.css":1,"sites\/all\/modules\/media\/modules\/media_wysiwyg\/css\/media_wysiwyg.base.css":1,"sites\/all\/modules\/ctools\/css\/ctools.css":1,"sites\/all\/modules\/eu_cookie_compliance\/css\/eu_cookie_compliance.css":1,"0":1,"sites\/all\/themes\/jango\/assets\/plugins\/socicon\/socicon.css":1,"sites\/all\/themes\/jango\/assets\/plugins\/bootstrap-social\/bootstrap-social.css":1,"sites\/all\/themes\/jango\/assets\/plugins\/font-awesome\/css\/font-awesome.min.css":1,"sites\/all\/themes\/jango\/assets\/plugins\/simple-line-icons\/simple-line-icons.min.css":1,"sites\/all\/themes\/jango\/assets\/plugins\/animate\/animate.min.css":1,"sites\/all\/themes\/jango\/assets\/plugins\/cubeportfolio\/css\/cubeportfolio.min.css":1,"sites\/all\/themes\/jango\/assets\/plugins\/owl-carousel\/assets\/owl.carousel.css":1,"sites\/all\/themes\/jango\/assets\/plugins\/fancybox\/jquery.fancybox.css":1,"sites\/all\/themes\/jango\/assets\/plugins\/slider-for-bootstrap\/css\/slider.css":1,"sites\/all\/themes\/jango\/assets\/plugins\/ilightbox\/css\/ilightbox.css":1,"sites\/all\/themes\/jango\/css\/YTPlayer.css":1,"sites\/all\/themes\/jango\/css\/fonts.css":1,"sites\/all\/themes\/jango\/assets\/plugins\/bootstrap\/css\/bootstrap.css":1,"sites\/all\/themes\/jango\/assets\/base\/css\/plugins.css":1,"sites\/all\/themes\/jango\/assets\/base\/css\/components.css":1,"sites\/all\/themes\/jango\/assets\/base\/css\/custom.css":1,"sites\/all\/themes\/jango\/css\/drupal.css":1,"sites\/all\/themes\/jango\/assets\/base\/css\/themes\/default.css":1,"sites\/all\/themes\/jango\/jango_sub\/css\/custom.css":1}},"urlIsAjaxTrusted":{"\/it\/sba\/biblioteca-polilibrary":true},"eu_cookie_compliance":{"popup_enabled":1,"popup_agreed_enabled":0,"popup_hide_agreed":0,"popup_clicking_confirmation":false,"popup_scrolling_confirmation":false,"popup_html_info":"\u003Cdiv\u003E\n  \u003Cdiv class =\u0022popup-content info\u0022\u003E\n    \u003Cdiv id=\u0022popup-text\u0022\u003E\n      \u003Ch2\u003EQuesto sito utilizza solo cookie tecnici propri e di terze parti, per il corretto funzionamento delle pagine web e per il miglioramento dei servizi\u003C\/h2\u003E\u003Cp\u003EProseguendo la navigazione del sito acconsenti all\u0027uso dei cookie\u003C\/p\u003E              \u003Cbutton type=\u0022button\u0022 class=\u0022find-more-button eu-cookie-compliance-more-button\u0022\u003EMaggiori informazioni\u003C\/button\u003E\n          \u003C\/div\u003E\n    \u003Cdiv id=\u0022popup-buttons\u0022\u003E\n      \u003Cbutton type=\u0022button\u0022 class=\u0022agree-button eu-cookie-compliance-secondary-button\u0022\u003EAccetto\u003C\/button\u003E\n              \u003Cbutton type=\u0022button\u0022 class=\u0022decline-button eu-cookie-compliance-default-button\u0022 \u003EChiudi\u003C\/button\u003E\n          \u003C\/div\u003E\n  \u003C\/div\u003E\n\u003C\/div\u003E","use_mobile_message":false,"mobile_popup_html_info":"\u003Cdiv\u003E\n  \u003Cdiv class =\u0022popup-content info\u0022\u003E\n    \u003Cdiv id=\u0022popup-text\u0022\u003E\n                    \u003Cbutton type=\u0022button\u0022 class=\u0022find-more-button eu-cookie-compliance-more-button\u0022\u003EMaggiori informazioni\u003C\/button\u003E\n          \u003C\/div\u003E\n    \u003Cdiv id=\u0022popup-buttons\u0022\u003E\n      \u003Cbutton type=\u0022button\u0022 class=\u0022agree-button eu-cookie-compliance-secondary-button\u0022\u003EAccetto\u003C\/button\u003E\n              \u003Cbutton type=\u0022button\u0022 class=\u0022decline-button eu-cookie-compliance-default-button\u0022 \u003EChiudi\u003C\/button\u003E\n          \u003C\/div\u003E\n  \u003C\/div\u003E\n\u003C\/div\u003E\n","mobile_breakpoint":"768","popup_html_agreed":"\u003Cdiv\u003E\n  \u003Cdiv class =\u0022popup-content agreed\u0022\u003E\n    \u003Cdiv id=\u0022popup-text\u0022\u003E\n      \u003Ch2\u003EThank you for accepting cookies\u003C\/h2\u003E\u003Cp\u003EYou can now hide this message or find out more about cookies.\u003C\/p\u003E    \u003C\/div\u003E\n    \u003Cdiv id=\u0022popup-buttons\u0022\u003E\n      \u003Cbutton type=\u0022button\u0022 class=\u0022hide-popup-button eu-cookie-compliance-hide-button\u0022\u003ENascondi\u003C\/button\u003E\n              \u003Cbutton type=\u0022button\u0022 class=\u0022find-more-button eu-cookie-compliance-more-button-thank-you\u0022 \u003EMore info\u003C\/button\u003E\n          \u003C\/div\u003E\n  \u003C\/div\u003E\n\u003C\/div\u003E","popup_use_bare_css":false,"popup_height":"auto","popup_width":"100%","popup_delay":1000,"popup_link":"\/it\/privacy\/privacy","popup_link_new_window":1,"popup_position":null,"popup_language":"it","store_consent":false,"better_support_for_screen_readers":0,"reload_page":0,"domain":"","popup_eu_only_js":0,"cookie_lifetime":"100","cookie_session":false,"disagree_do_not_show_popup":0,"method":"opt_in","whitelisted_cookies":"","withdraw_markup":"\u003Cbutton type=\u0022button\u0022 class=\u0022eu-cookie-withdraw-tab\u0022\u003EPrivacy settings\u003C\/button\u003E\n\u003Cdiv class=\u0022eu-cookie-withdraw-banner\u0022\u003E\n  \u003Cdiv class=\u0022popup-content info\u0022\u003E\n    \u003Cdiv id=\u0022popup-text\u0022\u003E\n      \u003Ch2\u003EWe use cookies on this site to enhance your user experience\u003C\/h2\u003E\u003Cp\u003EYou have given your consent for us to set cookies.\u003C\/p\u003E    \u003C\/div\u003E\n    \u003Cdiv id=\u0022popup-buttons\u0022\u003E\n      \u003Cbutton type=\u0022button\u0022 class=\u0022eu-cookie-withdraw-button\u0022\u003EWithdraw consent\u003C\/button\u003E\n    \u003C\/div\u003E\n  \u003C\/div\u003E\n\u003C\/div\u003E\n","withdraw_enabled":false},"theme_path":"sites\/all\/themes\/jango","base_path":"\/"});
+    //--><!]]>
+</script>
+
+<div class="c-layout-go2top" style="display: block;">
+    <i class="icon-arrow-up"></i>
+</div>
+
+
+<!--[if lt IE 9]>
+<script src="../assets/global/plugins/excanvas.min.js"></script>
+<![endif]-->
+</body>
+</html>

@@ -1,0 +1,22 @@
+#map { height: 500px; }
+
+#test{
+    color:red;
+}
+
+#map2 { height: 300px; }
+
+#test2{
+    color:red;
+}
+#map3 { height: 300px; }
+
+#test3{
+    color:red;
+}
+/* Sovrascrivi il colore del bordo */
+.leaflet-interactive {
+    stroke: #128390 !important; /* Rosso per il bordo */
+    stroke-width: 2 !important; /* Spessore */
+
+}
